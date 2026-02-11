@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="page" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#e8e8ee"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect x="4" y="4" width="120" height="120" rx="24" ry="24" fill="url(#bg)"/>
+  <!-- Page with folded corner -->
+  <path d="M38 22 L82 22 L96 36 L96 106 L38 106 Z" fill="url(#page)" opacity="0.95"/>
+  <path d="M82 22 L82 36 L96 36 Z" fill="#c7c7d0" opacity="0.7"/>
+  <!-- Scroll indicator lines on page -->
+  <rect x="48" y="42" width="36" height="4" rx="2" fill="#a5a5b8" opacity="0.5"/>
+  <rect x="48" y="52" width="28" height="4" rx="2" fill="#a5a5b8" opacity="0.4"/>
+  <rect x="48" y="62" width="32" height="4" rx="2" fill="#a5a5b8" opacity="0.35"/>
+  <rect x="48" y="72" width="24" height="4" rx="2" fill="#a5a5b8" opacity="0.3"/>
+  <rect x="48" y="82" width="30" height="4" rx="2" fill="#a5a5b8" opacity="0.25"/>
+  <rect x="48" y="92" width="20" height="4" rx="2" fill="#a5a5b8" opacity="0.2"/>
+  <!-- Capture crosshair brackets - top-left -->
+  <path d="M28 40 L28 28 L40 28" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <!-- Capture crosshair brackets - top-right -->
+  <path d="M100 28 L106 28 L106 40" stroke="white" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <!-- Capture crosshair brackets - bottom-left -->
+  <path d="M28 96 L28 108 L40 108" stroke="white" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <!-- Capture crosshair brackets - bottom-right -->
+  <path d="M100 108 L106 108 L106 96" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <!-- Down arrow indicating full page scroll -->
+  <circle cx="67" cy="68" r="14" fill="#6366f1" opacity="0.9"/>
+  <path d="M67 60 L67 76 M60 70 L67 77 L74 70" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

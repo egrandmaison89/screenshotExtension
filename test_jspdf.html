@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test jsPDF Loading</title>
+</head>
+<body>
+  <h1>jsPDF Test</h1>
+  <button id="testBtn">Test jsPDF</button>
+  <div id="result"></div>
+
+  <script src="jspdf.umd.min.js"></script>
+  <script>
+    document.getElementById('testBtn').addEventListener('click', function() {
+      const resultDiv = document.getElementById('result');
+
+      // Check what's available
+      console.log('window.jspdf:', window.jspdf);
+      console.log('window.jsPDF:', window.jsPDF);
+      console.log('typeof jsPDF:', typeof jsPDF);
+
+      let msg = 'Checking jsPDF...<br>';
+
+      if (window.jspdf) {
+        msg += '✅ window.jspdf exists<br>';
+        msg += 'Keys: ' + Object.keys(window.jspdf).join(', ') + '<br>';
+
+        if (window.jspdf.jsPDF) {
+          msg += '✅ window.jspdf.jsPDF exists<br>';
+          try {
+            const pdf = new window.jspdf.jsPDF();
+            pdf.text('Hello world!', 10, 10);
+            msg += '✅ Successfully created PDF instance!<br>';
+          } catch (e) {
+            msg += '❌ Error creating PDF: ' + e.message + '<br>';
+          }
+        } else {
+          msg += '❌ window.jspdf.jsPDF does NOT exist<br>';
+        }
+      } else {
+        msg += '❌ window.jspdf does NOT exist<br>';
+      }
+
+      if (window.jsPDF) {
+        msg += '✅ window.jsPDF exists (alternative)<br>';
+      }
+
+      if (typeof jsPDF !== 'undefined') {
+        msg += '✅ jsPDF global exists<br>';
+      }
+
+      resultDiv.innerHTML = msg;
+    });
+  </script>
+</body>
+</html>

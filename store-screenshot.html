@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Store Screenshot</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1280px;
+    height: 100vh;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .content-wrap {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+
+  /* Left side: text pitch */
+  .pitch {
+    color: white;
+    max-width: 480px;
+  }
+
+  .pitch h1 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .pitch p {
+    font-size: 20px;
+    font-weight: 400;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+
+  .badges {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Right side: popup mockup */
+  .popup-frame {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.1);
+    width: 300px;
+    padding: 28px;
+    transform: rotate(-2deg);
+    position: relative;
+  }
+
+  .popup-frame::before {
+    content: '';
+    position: absolute;
+    top: -3px; left: -3px; right: -3px; bottom: -3px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0));
+    z-index: -1;
+  }
+
+  .popup-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .popup-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .popup-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .popup-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a2e;
+    letter-spacing: -0.3px;
+  }
+
+  .popup-header span {
+    font-size: 11px;
+    color: #8b8b9e;
+    display: block;
+  }
+
+  .popup-btn {
+    width: 100%;
+    padding: 13px 18px;
+    border: none;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    letter-spacing: -0.1px;
+  }
+
+  .popup-btn.primary {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    box-shadow: 0 3px 12px rgba(99, 102, 241, 0.4);
+  }
+
+  .popup-btn.secondary {
+    background: white;
+    color: #4a4a5a;
+    border: 1.5px solid #e2e2ea;
+  }
+
+  .popup-status {
+    background: #f0f0ff;
+    color: #4338ca;
+    border: 1px solid #c7d2fe;
+    padding: 10px 14px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .popup-footer {
+    margin-top: 14px;
+    text-align: center;
+    font-size: 10px;
+    color: #b0b0be;
+  }
+
+  /* Decorative elements */
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    background: white;
+  }
+  .deco-1 { width: 300px; height: 300px; top: -80px; left: -60px; }
+  .deco-2 { width: 200px; height: 200px; bottom: -40px; right: 100px; }
+  .deco-3 { width: 120px; height: 120px; top: 60px; right: -30px; }
+</style>
+</head>
+<body>
+  <div class="deco-circle deco-1"></div>
+  <div class="deco-circle deco-2"></div>
+  <div class="deco-circle deco-3"></div>
+
+  <div class="content-wrap">
+    <div class="pitch">
+      <h1>Full page<br>screenshots.<br>One click.</h1>
+      <p>Capture any webpage from top to bottom. Save as PNG or PDF. No account required, no data uploaded anywhere.</p>
+      <div class="badges">
+        <div class="badge">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 11l3.5-4.5L8 9.5l2.5-3L14 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="2.5" width="13" height="11" rx="1.5" stroke="white" stroke-width="1.5"/></svg>
+          PNG
+        </div>
+        <div class="badge">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4.5 1.5h5l4 4v9h-9v-13z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.5 1.5v4h4" stroke="white" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          PDF
+        </div>
+        <div class="badge">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M1 8h14" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          100% Private
+        </div>
+      </div>
+    </div>
+
+    <div class="popup-frame">
+      <div class="popup-header">
+        <div class="popup-icon">
+          <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M38 22 L82 22 L96 36 L96 106 L38 106 Z" fill="white" opacity="0.9"/>
+            <path d="M82 22 L82 36 L96 36 Z" fill="white" opacity="0.5"/>
+            <path d="M28 40 L28 28 L40 28" stroke="white" stroke-width="6" stroke-linecap="round"/>
+            <path d="M100 108 L106 108 L106 96" stroke="white" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="67" cy="68" r="14" fill="rgba(255,255,255,0.3)"/>
+            <path d="M67 60 L67 76 M60 70 L67 77 L74 70" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h2>SnapPage</h2>
+          <span>Full page screenshot</span>
+        </div>
+      </div>
+
+      <div class="popup-btn primary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 11l3.5-4.5L8 9.5l2.5-3L14 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="2.5" width="13" height="11" rx="1.5" stroke="white" stroke-width="1.5"/></svg>
+        Save as PNG
+      </div>
+      <div class="popup-btn secondary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4.5 1.5h5l4 4v9h-9v-13z" stroke="#4a4a5a" stroke-width="1.5" stroke-linejoin="round"/><path d="M9.5 1.5v4h4" stroke="#4a4a5a" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        Save as PDF
+      </div>
+
+      <div class="popup-status">Capturing full page... 64%</div>
+
+      <div class="popup-footer">Saves to your Downloads/Screenshots folder</div>
+    </div>
+  </div>
+</body>
+</html>
