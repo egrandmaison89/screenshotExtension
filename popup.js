@@ -42,7 +42,7 @@ async function captureScreenshot(format) {
     if (format === 'png') {
       await downloadPNG(canvas, tab.title);
     } else if (format === 'pdf') {
-      await downloadPDF(canvas, tab.title);
+      await downloadPDF(canvas, tab.title, response.data);
     }
 
     showStatus('Screenshot saved successfully!', 'success');
@@ -141,7 +141,7 @@ async function downloadPNG(canvas, pageTitle) {
   });
 }
 
-async function downloadPDF(canvas, pageTitle) {
+async function downloadPDF(canvas, pageTitle, captureData = {}) {
   // Check if jsPDF is loaded - try multiple access patterns
   let jsPDFConstructor = null;
 
@@ -183,6 +183,20 @@ async function downloadPDF(canvas, pageTitle) {
   // Convert canvas to JPEG for smaller file size
   const imgData = canvas.toDataURL('image/jpeg', 0.92);
   pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, scaledHeight, '', 'FAST');
+
+  // Add clickable link annotations
+  const links = captureData.links || [];
+  const totalWidth = captureData.totalWidth || 1;
+  if (links.length > 0 && typeof pdf.link === 'function') {
+    links.forEach((link) => {
+      const linkScaleFactor = pdfWidth / totalWidth;
+      const pdfX = link.x * linkScaleFactor;
+      const pdfY = link.y * linkScaleFactor;
+      const pdfW = link.width * linkScaleFactor;
+      const pdfH = link.height * linkScaleFactor;
+      pdf.link(pdfX, pdfY, pdfW, pdfH, { url: link.url });
+    });
+  }
 
   // Convert to blob and download
   const pdfBlob = pdf.output('blob');

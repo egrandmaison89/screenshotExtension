@@ -1,5 +1,39 @@
 // Content script for capturing full page screenshots
 
+function collectLinks() {
+  const links = [];
+  const anchors = document.querySelectorAll('a[href]');
+
+  anchors.forEach((a) => {
+    const href = (a.getAttribute('href') || '').trim();
+    if (!href) return;
+
+    // Skip javascript: and data: URLs - PDF viewers cannot execute them
+    const lower = href.toLowerCase();
+    if (lower.startsWith('javascript:') || lower.startsWith('data:')) return;
+
+    let absoluteUrl;
+    try {
+      absoluteUrl = new URL(href, document.location.href).href;
+    } catch {
+      return;
+    }
+
+    const rect = a.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return;
+
+    links.push({
+      x: rect.left + window.scrollX,
+      y: rect.top + window.scrollY,
+      width: rect.width,
+      height: rect.height,
+      url: absoluteUrl
+    });
+  });
+
+  return links;
+}
+
 async function captureFullPage() {
   const originalScrollPosition = window.scrollY;
 
@@ -205,6 +239,9 @@ async function captureFullPage() {
       document.body.removeChild(progressDiv);
     }
 
+    // Collect links after page is restored so coordinates are stable
+    const links = collectLinks();
+
     return {
       screenshots,
       totalHeight,
@@ -212,7 +249,8 @@ async function captureFullPage() {
       viewportWidth,
       viewportHeight,
       overlap,
-      devicePixelRatio: window.devicePixelRatio || 1
+      devicePixelRatio: window.devicePixelRatio || 1,
+      links
     };
   } catch (error) {
     // Restore fixed elements on error
